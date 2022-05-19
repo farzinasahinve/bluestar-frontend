@@ -1,36 +1,41 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from "axios";
+const initialState = {
+  user: {},
+  token: '',
+  status: 'idle',
+};
+var BASE_URL  = 'https://faac6dbw50.execute-api.us-east-1.amazonaws.com/dev/login';
 
-const BASE_URL  = 'https://faac6dbw50.execute-api.us-east-1.amazonaws.com/dev/login';
+// typically used to make async requests.
+export const loginAsync = createAsyncThunk(
+  'login',
+  async (loginData) => {
+      const response = await axios.post(BASE_URL, loginData)
+      return response.data;
+  }
+);
 
-const initialState = []
-
-export const login = createAsyncThunk('login', async (loginData) => {
-    const response = await axios.post(BASE_URL, loginData)
-    console.log(response)
-    return response.data
-})
-
-
-const loginSlice = createSlice({
-    name: 'login',
-    initialState,
-    reducers: {},
-    extraReducers(builder) {
-        builder.addCase(login.pending, (state) => {
-            // console.log(action.payload)
-            state.status = 'loading';
-        })
-        builder.addCase(login.fulfilled, (state, action) => {
-            console.log(action.payload)
-            state.user = action.payload;
-        })
-        builder.addCase(login.rejected, (state, error) => {
-            console.log(error.error.message)
-            state.error = error.error;
-        })
-    }
-})
-
-export const selectUser = (state) => state.login
-export default loginSlice.reducer
+export const loginSlice = createSlice({
+  name: 'auth',
+  initialState,
+  // The `reducers` field lets us define reducers and generate associated actions
+  reducers: {
+  },
+  // The `extraReducers` field lets the slice handle actions defined elsewhere,
+  extraReducers: (builder) => {
+    builder
+      .addCase(loginAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(loginAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.user = action.payload.data[0];
+        state.token = action.payload.token;
+        localStorage.setItem('token',action.payload.token)
+      });
+  },
+});
+// get reducer data
+export const selectUser = (state) => state.auth;
+export default loginSlice.reducer;

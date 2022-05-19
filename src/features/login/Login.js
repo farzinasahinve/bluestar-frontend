@@ -1,4 +1,4 @@
-import { login, selectUser } from "./loginSlice";
+import { loginAsync, selectUser } from "./loginSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react"
 
@@ -12,6 +12,11 @@ const Login = () => {
     const [errors, setErrors] = useState({});
     const [isSubmitted, setIsSubmitted] = useState(false);
     const authUser = useSelector(selectUser)
+    
+    useEffect(() => {
+        if(authUser?.token) window.location.href = '/dashboard'
+    },[authUser])
+
     const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
     };
@@ -19,11 +24,10 @@ const Login = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         //setErrors(validateLoginForm(values))
-        dispatch(login(values))
+        dispatch(loginAsync(values))
         setIsSubmitted(true)
     }
     useEffect(()=>{
-        console.log(authUser);
         if(Object.keys(errors).length === 0 && isSubmitted){
           console.log(values)
         }
