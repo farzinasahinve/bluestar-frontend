@@ -1,0 +1,287 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{ font-family: 'Inter', sans-serif;}
+
+.auth-body-bg{background:#fff;}
+
+.card{ box-shadow:1px 0 20px rgb(0 0 0 / 10%);}
+#msform fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 0px;
+
+    /*stacking fieldsets above each other*/
+    position: relative;
+}
+
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+    display: none;
+}
+
+#msform fieldset .form-card {
+    text-align: left;
+    color: #9E9E9E;
+}
+
+
+/*Blue Buttons*/
+#msform .action-button {
+    width: 100px;
+    background: skyblue;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+#msform .action-button:hover, #msform .action-button:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px skyblue;
+}
+
+/*Previous Buttons*/
+#msform .action-button-previous {
+    width: 100px;
+    background: #616161;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+#msform .action-button-previous:hover, #msform .action-button-previous:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #616161;
+}
+
+/*Dropdown List Exp Date*/
+select.list-dt {
+    border: none;
+    outline: 0;
+    border-bottom: 1px solid #ccc;
+    padding: 2px 5px 3px 5px;
+    margin: 2px;
+}
+
+select.list-dt:focus {
+    border-bottom: 2px solid skyblue;
+}
+
+/*The background card*/
+.card {
+    z-index: 0;
+    border: none;
+    border-radius: 0.5rem;
+    position: relative;
+}
+
+/*FieldSet headings*/
+.fs-title {
+    font-size: 25px;
+    color: #2C3E50;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: left;
+}
+
+
+
+/*progressbar*/
+
+ul#progressbar{ display:flex; justify-content: center;}
+#progressbar {
+  margin-bottom: 0px;
+  overflow: hidden;
+ padding: 0px;
+  display: flex;
+ justify-content: center;
+}
+
+h4.text-center.font-size-18.mb-3 {
+    font-size: 30px;
+}
+#progressbar li {
+  list-style-type: none;
+  color: white;
+  text-transform: uppercase;
+  font-size: 9px;
+  width: 23.33%;
+  float: left;
+  position: relative;
+}
+#progressbar li:before {
+  content: "\f111";
+    font-family: 'FontAwesome';
+    width: 23px;
+   height: 23px;
+    display: block;
+	padding: 4px 4px;
+    font-size: 9px;
+    color: #EAECF0;
+    background: white;
+    border-radius: 50px;
+    margin: 0 auto 5px auto;
+    text-align: center;
+    border: 1px solid #EAECF0;
+}
+
+#progressbar li.active:after{
+	
+background:#1570EF;	
+	
+}
+/*progressbar connectors*/
+#progressbar li:after {
+  content: "";
+  width: 100%;
+  height: 2px;
+  background: #EAECF0;
+  position: absolute;
+  left: -50%;
+  top: 11px;
+  z-index: -1; /*put it behind the numbers*/
+}
+#progressbar li:first-child:after {
+  /*connector not needed before the first step*/
+  content: none;
+}
+
+#progressbar li.active:before,
+#progressbar li.active:after {
+ 
+  color: #1570EF;
+	border-radius: 50px;
+}
+
+#progressbar li.active:before {
+    color: #1570EF;
+    border-radius: 50px;
+    background: #e1edfd;
+    border: 0;
+    content: "\f192";
+    font-family: 'FontAwesome';
+    text-align: center;
+    font-size: 16px;
+     line-height: 12px; 
+    padding: 5px 1px;
+}
+
+
+.custom-control-label::after {
+    position: absolute;
+    top: 0.25rem;
+    left: -1.5rem;
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    content: "";
+    background: no-repeat 50%/50% 50%;
+}
+
+
+/*Color number of the step and the connector before it
+#progressbar li.active:before, #progressbar li.active:after {
+    background: #fff;
+    font-family: FontAwesome;
+    border: 1px solid blue;
+    content: "\f00c";
+    position: relative;
+    color: blue;
+    border-radius: 50%;
+    left: 0px;
+    line-height: 25px;
+    height: 30px;
+    top: 1px;
+    width: 30px;
+    margin: 0 auto 2px auto;
+    padding: 2px
+    
+}
+
+*/
+
+/*Imaged Radio Buttons*/
+.radio-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.radio {
+    display:inline-block;
+    width: 204;
+    height: 104;
+    border-radius: 0;
+    background: lightblue;
+    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    cursor:pointer;
+    margin: 8px 2px; 
+}
+
+
+	
+.radio:hover {
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.radio.selected {
+    box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+/*Fit image in bootstrap div*/
+.fit-image{
+    width: 100%;
+    object-fit: cover;
+}	
+	
+	
+	.wrapper-page {
+   margin: 5.5% auto;
+    max-width: 460px;
+    position: relative;
+		margin-bottom: 0px;
+}
+
+/*form-style login
+*/
+
+i.dripicons-arrow-thin-right, i.dripicons-arrow-thin-left{ vertical-align: middle; line-height: 2px;}
+
+.card-body form label {
+    color: #344054;
+    font-size: 14px;
+}
+.card-body .form-control, .form-select {
+	font-size: 16px;
+	color:#667085;
+    border-radius: 8px;
+    height: 44px;
+    border: 1px solid #D0D5DD;
+}
+.previous {
+    margin-right: 8%;
+}
+.custom-btn{ float:right; height: 44px; width:190px; box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+border-radius: 8px; }
+@media(max-width:767px){
+	
+	.custom-btn {
+   
+    width: 48%;
+    margin-bottom: 20px;
+  
+}
+	#progressbar li{ width:33%;}
+	.previous{ margin-right:10px;	}
+	
+}
