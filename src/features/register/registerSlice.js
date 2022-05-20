@@ -17,7 +17,7 @@ export const createAccountAsync = createAsyncThunk(
 );
 
 export const registerSlice = createSlice({
-    name:'createAccount',
+    name:'register',
     initialState,
     reducers: {
     },
@@ -35,5 +35,5 @@ export const registerSlice = createSlice({
     },
 })
 
-export const createAccountStatus = (state) => state.createAccount;
+export const createAccountStatus = (state) => state.register;
 export default registerSlice.reducer

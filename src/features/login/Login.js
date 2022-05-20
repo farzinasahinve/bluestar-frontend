@@ -1,9 +1,11 @@
 import { loginAsync, selectUser } from "./loginSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react"
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const [values, setValues] = useState({
         email: '',
         password: '',
@@ -14,7 +16,7 @@ const Login = () => {
     const authUser = useSelector(selectUser)
     
     useEffect(() => {
-        if(authUser?.token) window.location.href = '/dashboard'
+        if(authUser?.token) navigate('/dashboard')
     },[authUser])
 
     const handleChange = (prop) => (event) => {
