@@ -23,7 +23,7 @@ const Login = () => {
     
     const handleSubmit = (event) => {
         event.preventDefault();
-        //setErrors(validateLoginForm(values))
+        setErrors(validateLoginForm(values))
         dispatch(loginAsync(values))
         setIsSubmitted(true)
     }
@@ -69,7 +69,7 @@ const Login = () => {
                                             <div className="col-12">
                                                 <label className="form-label ms-1 mb-1 font-light">E-mail<span className="required">*</span></label>
                                                 <input type="text" name='email' value={values.email} placeholder="E-mail" onChange={handleChange('email')} className="form-control"/>
-                                                <span className="error">{errors.email}</span>
+                                                <span className="error text-danger mt-5">{errors.email}</span>
                                             </div>
                                         </div>
                                             
@@ -77,7 +77,7 @@ const Login = () => {
                                             <label className="form-label ms-1 mb-1 font-light">Password<span className="required">*</span></label>
                                             <div className="col-12">
                                                 <input type="password" name='password' value={values.password} placeholder="Password" onChange={handleChange('password')} className="form-control"/>
-                                                <span className="error">{errors.password}</span>
+                                                <span className="error text-danger mt-5">{errors.password}</span>
                                             </div>
                                         </div>
                                                 
@@ -91,11 +91,11 @@ const Login = () => {
                                 </form>
                                 <div className="form-group mb-3 row mt-2">
                                     <div className="col-sm-12">
-                                        <a href="Reset-pwd.html " className="float-end"><strong>Forgot your password?</strong></a>
+                                        <a href="/forgot-password" className="float-end"><strong>Forgot your password?</strong></a>
                                     </div>
                                 </div>
                                 <div className="col-12 mt-3 border-top text-center">
-                                    <label className="pt-4">Don't have Account? <a href="register.html">Create your  Account</a></label>
+                                    <label className="pt-4">Don't have Account? <a href="/register">Create your  Account</a></label>
                                 </div>
                             </div>
                         </div>
