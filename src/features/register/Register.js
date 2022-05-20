@@ -4,9 +4,11 @@ import {useState, useEffect} from 'react'
 import PersonalInfo from "./PersonalInfo"
 import CompanyInfo from "./CompanyInfo"
 import SecurityInfo from "./SecurityInfo"
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const [page, setPage] = useState(0);
     const [errors, setErrors] = useState({});
     const [formData, setFormData] = useState({
@@ -38,7 +40,7 @@ const Register = () => {
     
     useEffect(() => {
         console.log(accountCreationStatus)
-        if(accountCreationStatus?.is_account_created === true ) window.location.href = '/register-success'
+        if(accountCreationStatus?.is_account_created === true ) navigate('/register-success')
     },[accountCreationStatus])
 
     // const checkPage = () => {
