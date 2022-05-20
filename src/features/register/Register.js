@@ -8,6 +8,7 @@ import SecurityInfo from "./SecurityInfo"
 const Register = () => {
     const dispatch = useDispatch()
     const [page, setPage] = useState(0);
+    const [errors, setErrors] = useState({});
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -47,9 +48,37 @@ const Register = () => {
     //         setPage((currPage) => currPage + 1);
     //     }
     // }
+    const validatePersonalInfo = (values)=>{
+        const errors = {}
+        if(!values.password){
+          errors.password = "First name is required"
+        }
+        if(!values.password){
+            errors.password = "First name is required"
+          }
+        console.log(errors)
+        return errors
+    }
+    const validateAccountForm = (values)=>{
+        const errors = {}
+        //const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+        if(!values.email || !emailRegex.test(values.email)){
+          errors.email = "Please enter a valid email"
+        }
+    
+        if(!values.password){
+          errors.password = "Password is required"
+        }else if(values.password.length < 8){
+            errors.password = "Password must contain atleast 8 characters"
+        }
+        console.log(errors)
+        return errors
+    }
 
     return (
         <>
+        {errors.email}
         <div className="wrapper-page">
             <div className="container-fluid p-0">
                 <div className="card ">
@@ -79,6 +108,7 @@ const Register = () => {
                                     if (page === FormTitles.length - 1) {
                                         //alert("FORM SUBMITTED");
                                         console.log(formData);
+                                        setErrors(validateAccountForm(formData))
                                         dispatch(createAccountAsync(formData))
                                     } else {
                                         setPage((currPage) => currPage + 1);
@@ -88,7 +118,7 @@ const Register = () => {
                                     onClick={() => {
                                     setPage((currPage) => currPage - 1);
                                     }} className="previous btn btn-outline-secondary  custom-btn"><i className="dripicons-arrow-thin-left" aria-hidden="true"></i>&nbsp; Back</button>
-                                {/* </form> */}
+                                    {/* </form> */}
                                 
                                 <div className="col-12 mt-3 border-top text-center">
                                     <label className="pt-4">Already Registerd ? <a href="/login">Login</a></label>
