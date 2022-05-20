@@ -1,9 +1,12 @@
-import {useState} from 'react'
+import {createAccountAsync, createAccountStatus} from "./registerSlice"
+import { useDispatch, useSelector } from "react-redux";
+import {useState, useEffect} from 'react'
 import PersonalInfo from "./PersonalInfo"
 import CompanyInfo from "./CompanyInfo"
 import SecurityInfo from "./SecurityInfo"
 
 const Register = () => {
+    const dispatch = useDispatch()
     const [page, setPage] = useState(0);
     const [formData, setFormData] = useState({
         email: "",
@@ -12,9 +15,9 @@ const Register = () => {
         firstName: "",
         lastName: "",
         companyName:"",
-        usdot:"",
+        dotNumber:"",
         timeZone:"",
-        phone:""
+        phoneNumber:""
     });
 
     const FormTitles = ["Sign Up", "Personal Info", "Other"];
@@ -29,15 +32,21 @@ const Register = () => {
             return <SecurityInfo formData={formData} setFormData={setFormData} />;
         }
     };
+    
+    const accountCreationStatus = useSelector(createAccountStatus)
+    
+    useEffect(() => {
+        console.log(accountCreationStatus)
+        if(accountCreationStatus?.is_account_created === true ) window.location.href = '/register-success'
+    },[accountCreationStatus])
 
-    const checkPage = () => {
-        if (page === FormTitles.length - 1) {
-          //alert("FORM SUBMITTED");
-          console.log(formData);
-        } else {
-          setPage((currPage) => currPage + 1);
-        }
-    }
+    // const checkPage = () => {
+    //     if (page === FormTitles.length - 1) {
+    //         console.log(formData);
+    //     } else {
+    //         setPage((currPage) => currPage + 1);
+    //     }
+    // }
 
     return (
         <>
@@ -59,7 +68,7 @@ const Register = () => {
                             <div className="col-md-12 mx-0">
                                 {/* <form id="msform"> */}
                                     <ul id="progressbar">
-                                        <li className={page>=0 ? "active" : ""}>{FormTitles[page]}</li>
+                                        <li className={page >=0 ? "active" : ""}>{FormTitles[page]}</li>
                                         <li className={(page >= 1) ? "active" : ""}>{FormTitles[page]}</li>
                                         <li className={(page > 1 && page<=2) ? "active" : ""}>{FormTitles[page]}</li>
                                     </ul>
@@ -70,6 +79,7 @@ const Register = () => {
                                     if (page === FormTitles.length - 1) {
                                         //alert("FORM SUBMITTED");
                                         console.log(formData);
+                                        dispatch(createAccountAsync(formData))
                                     } else {
                                         setPage((currPage) => currPage + 1);
                                     }

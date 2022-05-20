@@ -24,9 +24,9 @@ const CompanyInfo = ({ formData, setFormData }) => {
                 <input className="form-control"
                             type="text"
                             placeholder="USDOT"
-                            value={formData.usdot}
+                            value={formData.dotNumber}
                             onChange={(e) => {
-                            setFormData({ ...formData, usdot: e.target.value });
+                            setFormData({ ...formData, dotNumber: e.target.value });
                     }}/>
                 </div>
             </div>
@@ -35,8 +35,10 @@ const CompanyInfo = ({ formData, setFormData }) => {
             <div className="form-group mb-3 row">
                 <label className="form-label ms-1 mb-1 font-light">Time Zone *</label>
                 <div className="col-12">
-                    <select className="form-select" aria-label="Default select example">
-                        <option selected="">Select a time Zone</option>
+                    <select className="form-select" aria-label="Default select example" onChange={(e) => {
+                            setFormData({ ...formData, timeZone: e.target.value });
+                    }}>
+                        <option value="">Select a time Zone</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
                         <option value="3">Three</option>
