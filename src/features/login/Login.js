@@ -50,6 +50,7 @@ const Login = () => {
     }
     return (
         <>
+        <div className="wrapper-page">
             <div className="container-fluid p-0">
                 <div className="card ">
                     <div className="card-body">
@@ -104,6 +105,7 @@ const Login = () => {
                     </div>
                 </div>
             </div>
+        </div>
         </>
     
     )

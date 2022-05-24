@@ -30,7 +30,7 @@ export const loginSlice = createSlice({
       })
       .addCase(loginAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.user = action.payload.data[0];
+        state.user = action.payload.data;
         state.token = action.payload.token;
         localStorage.setItem('token',action.payload.token)
       });
