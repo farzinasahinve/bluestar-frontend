@@ -7,14 +7,17 @@ import RegisterSuccess from "./features/register/RegisterSuccess"
 import Drivers from "./features/drivers/Drivers";
 import Vehicles from "./features/vehicles/Vehicles";
 import ELD from "./features/eld/ELD";
+import PortalUser from "./features/portalUsers/PortalUser";
+import CompanyView from "./features/company/CompanyView"
+import ProtectedRoute from "./hook/ProtectedRoute";
 
 function App() {
   return (
     <div className="">
       <BrowserRouter>
         <Routes>
-        <Route path="/" element={<Login/>}/>
-          <Route path="dashboard" element={<Dashboard/>}/>
+          <Route path="/" element={<Login/>}/>
+          <Route path="dashboard" component={<ProtectedRoute><Dashboard/></ProtectedRoute>}/>
           <Route path="login" element={<Login/>}/>
           <Route path="register" element={<Register/>}/>
           <Route path="register-success" element={<RegisterSuccess/>}/>
@@ -23,9 +26,9 @@ function App() {
             <Route path="drivers" element={<Drivers/>}/>
             <Route path="vehicles" element={<Vehicles/>}/>
             <Route path="elds" element={<ELD/>}/>
-            {/* <Route path="drivers" element={<Drivers/>}/> */}
+            <Route path="portal-users" element={<PortalUser/>}/>
+            <Route path="company" element={<CompanyView/>}/>
           </Route>
-          
         </Routes>
       </BrowserRouter>
     </div>

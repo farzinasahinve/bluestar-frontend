@@ -1,15 +1,20 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios"
 
-const GET_DRIVER_LIST='https://faac6dbw50.execute-api.us-east-1.amazonaws.com/dev/getDriverList'
+var GET_DRIVER_LIST='https://faac6dbw50.execute-api.us-east-1.amazonaws.com/dev/getDriverList'
 const initialState = {
     drivers:[],
     status:'idle',
     error:null
 }
 
-export const fetchDrivers = createAsyncThunk('drivers/fetchDrivers',async()=>{
+export const fetchDrivers = createAsyncThunk('drivers/fetchDrivers',async(searchKey,searchStatus)=>{
     try{
+        console.log(searchKey)
+        if(searchKey){
+            GET_DRIVER_LIST = GET_DRIVER_LIST+`?search_key=${searchKey}&search_status=${searchStatus}`
+        }
+        console.log(GET_DRIVER_LIST)
         const response = await axios.get(GET_DRIVER_LIST)
         return response.data
     }catch(err){

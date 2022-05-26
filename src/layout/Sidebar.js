@@ -69,17 +69,16 @@ const Sidebar = () => {
                         </li>
 
                         <li>
-                            <Link to="" className=" has-arrow waves-effect">
+                            <Link to="" className="has-arrow waves-effect">
                                 <i className="ri-settings-2-line"></i>
                                 <span>Setting</span>
                             </Link>
-                            <ul className="sub-menu">
+                            <ul className="sub-menu" aria-expanded>
                                 <li><Link to="/settings/drivers">Driver </Link></li>
                                 <li><Link to="/settings/vehicles">Vehicles</Link></li>
                                 <li><Link to="/settings/elds">ELD Devices</Link></li>
-                                <li><Link to="">Portal Users</Link></li>ss
-                                <li><Link to="">Company</Link></li>
-                                
+                                <li><Link to="/settings/portal-users">Portal Users</Link></li>
+                                <li><Link to="/settings/company">Company</Link></li>
                             </ul>
                         </li>
                     </ul>
