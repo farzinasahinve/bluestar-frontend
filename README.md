@@ -13,11 +13,13 @@ You should have npm installed
 ### Cloning Repository
 
 https://github.com/farzinasahinve/bluestar-frontend
+
 cd bluestar-frontend
 
 ### Run Project
 
 npm install
+
 npm start
 
 ### `npm run build` for making build
