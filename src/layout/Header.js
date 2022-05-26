@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom"
 
 const Header = ({pageHead}) => {
+    let loggedUserEmail = localStorage.getItem('loggedUserEmail')
+    console.log(loggedUserEmail)
     return (
         <header id="page-topbar">
             <div className="navbar-header  mt-2 pb-1">
@@ -242,7 +244,7 @@ const Header = ({pageHead}) => {
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span className="rounded-circle header-profile-user p-2">KP</span>
                                     
-                                <span className="d-none d-xl-inline-block text-capitalize ms-1  font-size-14  user-name vertical-middle">Kapil Prajapati<br></br><small>Kapil@gmail.com</small> </span>
+                                <span className="d-none d-xl-inline-block text-capitalize ms-1  font-size-14  user-name vertical-middle"><br></br><small>{loggedUserEmail}</small> </span>
                                 
                             </button>
                             <div className="dropdown-menu dropdown-menu-end">

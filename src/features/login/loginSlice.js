@@ -33,6 +33,8 @@ export const loginSlice = createSlice({
         state.user = action.payload.data;
         state.token = action.payload.token;
         localStorage.setItem('token',action.payload.token)
+        localStorage.setItem('loggedUserEmail',action.payload.data.email)
+        localStorage.setItem('loggedUserData',action.payload.data)
       });
   },
 });

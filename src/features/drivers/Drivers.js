@@ -54,10 +54,8 @@ const Drivers = () => {
                                                         <div className="form-group">
                                                             <label className="form-label">Filter by Status</label>
                                                             <select className="form-select" onChange={e=>setsearchStatus(e.target.value)}>
-                                                                <option value="">Active</option>
                                                                 <option value="1">Active</option>
-                                                                <option value="2">Two</option>
-                                                                <option value="3">Three</option>
+                                                                <option value="2">Inactive</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -75,7 +73,7 @@ const Drivers = () => {
                                                 <div className="col-sm-10">
                                                     <div className="form-group">
                                                         <label className="form-label">&nbsp;</label>
-                                                        <button type="button" className="btn d-block add-button" ><i className="dripicons-plus font-size-20 vertical-align-top"></i> &nbsp; Add Driver</button>
+                                                        <button type="button" className="btn d-block add-button"><i className="dripicons-plus font-size-20 vertical-align-top"></i> &nbsp; Add Driver</button>
                                                     </div>
                                                 </div>
                                                 <div className="col-sm-2">
