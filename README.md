@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Bluestar
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was generated with REACT version 18.1.0
 
 ## Available Scripts
 
