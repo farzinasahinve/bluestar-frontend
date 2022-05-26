@@ -7,7 +7,7 @@ const initialState = {
     status:'idle',
     error:null
 }
-
+const token = ''
 export const fetchDrivers = createAsyncThunk('drivers/fetchDrivers',async(searchKey,searchStatus)=>{
     try{
         console.log(searchKey)
