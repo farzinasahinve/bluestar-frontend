@@ -1,22 +1,27 @@
 import Header from "../../layout/Header"
 import Sidebar from "../../layout/Sidebar"
+import SelectDropdown from "../../helper/SelectDropdown"
 import { Link } from "react-router-dom"
 import { useState } from "react"
+import { useSelector, useDispatch } from "react-redux";
+import { addDriver } from "./driversSlice";
 
 const DriverForm = () => {
+  const dispatch = useDispatch()
   const pageHead = ''
+  let hosRules = ['Property']
   const [values, setValues] = useState({
       username: ''
   });
-  const handleChange = ()=>{
-    //setValues({ ...values, [prop]: event.target.value });
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // setErrors(validateDriverForm(values))
+    dispatch(addDriver(values))
+    // setIsSubmitted(true)
   }
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   setErrors(validateLoginForm(values))
-  //   dispatch(loginAsync(values))
-  //   setIsSubmitted(true)
-  // }
   return (
     <>
     <div id='layout-wrapper'>
@@ -28,6 +33,7 @@ const DriverForm = () => {
             <div className="row">
               <div className="col-10 mt-3 mx-auto">
                 <div className="page-title-box">
+                  <form className="search-data add-driver" onSubmit={handleSubmit}>
                   <div className="row">
                     <div className="col-8">
                       <div className="row">
@@ -44,7 +50,7 @@ const DriverForm = () => {
 
                         <div className="col-sm-7">
                           <div className="form-group">
-                            <Link to="" type="button" className="btn d-block w-100 add-button"><i className="dripicons-plus font-size-20 vertical-align-top"></i> Add Driver</Link>
+                            <button type="submit" className="btn d-block w-100 add-button"><i className="dripicons-plus font-size-20 vertical-align-top"></i> Add Driver</button>
                           </div>
                         </div>
                       </div>
@@ -54,12 +60,12 @@ const DriverForm = () => {
                     <div className="col-md-12">
                       <div className="card">
                         <div className="card-body">
-                          <form className="search-data add-driver">
+                          
                             <div className="row">
                               <div className="col-md-12">
                                 <div className="mb-4 user-input">
                                   <label  className="form-label">Driver ID</label>
-                                  <input type="text" value={values.username} className="form-control"  onChange={handleChange('username')}placeholder=""  required=""/>
+                                  <input type="text" name="username" value={values.username} className="form-control"  onChange={handleChange('username')} placeholder=""  required=""/>
                                 </div>
                               </div>
                             </div>
@@ -127,23 +133,17 @@ const DriverForm = () => {
                               <div className="col-md-6">
                                 <div className="mb-4">
                                   <label for="validationCustom01" className="form-label">Driving License Issuing State </label>
-                                  <select className="form-control select2">
-                                                            <option>Select</option>
-                                                            <optgroup label="Alaskan/Hawaiian Time Zone">
-                                                                <option value="AK">Alaska</option>
-                                                                <option value="HI">Hawaii</option>
-                                                            </optgroup>
-                                                          
-                                
-                                                            
-                                                        </select>
-
-                                                    </div>
-                                                    <div>
-                                                      
-
-
-                                </div>
+                                    <SelectDropdown type={2} options={['Alaska','Hawaii']}/>
+                                          {/* <select className="form-control select2">
+                                              <option>Select</option>
+                                              <optgroup label="Alaskan/Hawaiian Time Zone">
+                                                  <option value="AK">Alaska</option>
+                                                  <option value="HI">Hawaii</option>
+                                              </optgroup>
+                                          </select> */}
+                                        </div>
+                                      <div>
+                                    </div>
                               </div>
                               <div className="col-md-6">
                                 <div className="mb-4">
@@ -154,7 +154,7 @@ const DriverForm = () => {
                               </div>
                             </div>
 
-                          </form>
+                          
 
                         </div>
                       </div>
@@ -167,13 +167,13 @@ const DriverForm = () => {
                     <div className="col-md-12">
                       <div className="card">
                         <div className="card-body">
-                          <form className="search-data add-driver">
+                          
                             <div className="row">
                               <div className="col-md-12">
                                 <div className="mb-4">
                                 <label  className="form-label">Home Terminal</label>
                                 <select className="form-control select2-search-disable">
-                                                            <option>Choose Terminal</option>
+                                                            <option value="">Choose Terminal</option>
                                                             <optgroup label="">
                                                                 <option value="AK">Cristino Ln, Oxford PA, 19363</option>
                                                               <option value="AK">Cristino Ln, Oxford PA, 19363</option>
@@ -191,15 +191,15 @@ const DriverForm = () => {
                                 <div className="mb-4">
                                   <label for="validationCustom01" className="form-label">Assign Vechiles</label>
                                   <select className="form-control select2">
-                                                            
-                                                            <optgroup label="Alaskan/Hawaiian Time Zone">
-                                                                <option value="AK">77777</option>
-                                                                <option value="HI">5555</option>
-                                                            </optgroup>
-                                                          
-                                
-                                                            
-                                                        </select>
+                                       <option value="">--select--</option>                   
+                                      <optgroup label="Alaskan/Hawaiian Time Zone">
+                                          <option value="AK">77777</option>
+                                          <option value="HI">5555</option>
+                                      </optgroup>
+                                    
+          
+                                      
+                                  </select>
 
                                 </div>
                               </div>
@@ -213,7 +213,7 @@ const DriverForm = () => {
                             </p>
                                 </div>
 
-                          </form>
+                          
                         </div>
                       </div>
                     </div>
@@ -227,7 +227,7 @@ const DriverForm = () => {
                     <div className="col-md-12">
                       <div className="card">
                         <div className="card-body">
-                          <form className="search-data add-driver">
+                          
                             <div className="form-check mb-3 disabled">
                               <input className="form-check-input text-muted" type="checkbox" id="formCheck1" disabled/>
                               <label className="form-check-label text-muted" for="formCheck1">Form Checkbox </label>
@@ -236,10 +236,7 @@ const DriverForm = () => {
                               <div className="col-md-12">
                                 <div className="mb-4">
                                   <label  className="form-label">HOS Rules</label>
-                                  <select className="form-control form-select">
-                                    <option selected="">Property</option>
-                                    <option>USA 60 hour/8 day</option>
-                                  </select>
+                                  <SelectDropdown type={1} options={hosRules}/>
                                 </div>
                               </div>
                             </div>
@@ -248,11 +245,7 @@ const DriverForm = () => {
                               <div className="col-md-12">
                                 <div className="mb-4">
                                   <label for="validationCustom01" className="form-label">Cargo Type </label>
-                                  <select className="form-control form-select">
-                                    <option selected="">Property</option>
-                                    <option >Passenger</option>
-                                    <option >Oil and Gas</option>
-                                  </select>
+                                  <SelectDropdown type={1} options={['Passenger','Oil and Gas']}/>
                                 </div>
                               </div>
                             </div>
@@ -261,11 +254,7 @@ const DriverForm = () => {
                               <div className="col-md-12">
                                 <div className="mb-4">
                                   <label  className="form-label">Rest Break </label>
-                                  <select className="form-control form-select">
-                                    <option selected="">30 Minute Break</option>
-                                    <option> No break Required</option>
-                                  </select>
-
+                                  <SelectDropdown type={1} options={['30 mint Break','No break required']}/>
                                 </div>
                               </div>
                             </div>
@@ -299,13 +288,14 @@ const DriverForm = () => {
                                 <label className="form-check-label" for="invalidCheck">Allow Manual Driver  </label>
                                 
                             </div>
-                          </form>
+                          
 
                         </div>
                       </div>
                     </div>
 
                   </div>
+                  </form>
                 </div>
               </div>
             </div>

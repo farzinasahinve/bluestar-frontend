@@ -4,6 +4,7 @@ import axios from "axios"
 const BASEURL = "http://localhost:3000/dev/"
 //const BASEURL = "https://faac6dbw50.execute-api.us-east-1.amazonaws.com/dev/"
 var GET_DRIVER_LIST =  BASEURL+'getDriverList?lastkeyfound=start&limit=20'
+const ADD_DRIVER = ''
 const initialState = {
     drivers:[],
     status:'idle',
@@ -23,6 +24,19 @@ export const fetchDrivers = createAsyncThunk('drivers/fetchDrivers',async(search
         }
         //console.log(GET_DRIVER_LIST)
         const response = await axios.get(GET_DRIVER_LIST,config)
+        return response.data
+    }catch(err){
+        return err.message
+    }
+})
+
+export const addDriver = createAsyncThunk('drivers/addDriver',async(driverData)=>{
+    try{
+        const config = {
+            Authorization: `Bearer ${token}`
+        }
+        //console.log(GET_DRIVER_LIST)
+        const response = await axios.get(ADD_DRIVER,driverData,config)
         return response.data
     }catch(err){
         return err.message

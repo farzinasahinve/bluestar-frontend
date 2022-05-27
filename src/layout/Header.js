@@ -1,6 +1,12 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const Header = ({pageHead}) => {
+    const navigate = useNavigate()
+    const handleLogout = () => {
+        localStorage.clear();
+        navigate('/login')
+    };
+    //console.log(localStorage.getItem('loggedUserData')) 
     return (
         <header id="page-topbar">
             <div className="navbar-header  mt-2 pb-1">
@@ -255,7 +261,7 @@ const Header = ({pageHead}) => {
                                 <div className="dropdown-divider m-0"></div>
                                 <Link className="dropdown-item" to="#"><i className="mdi mdi-api  align-middle me-1"></i> API </Link>
                                 
-                                <Link className="dropdown-item " to="#"><i className=" ri-logout-box-r-line align-middle me-1"></i> Log out</Link>
+                                <button type="button" className="dropdown-item " to="#" onClick={handleLogout}><i className=" ri-logout-box-r-line align-middle me-1"></i> Log out</button>
                                 <div className="dropdown-divider m-0"></div>
                                 <ul className="d-inline-flex bootom-links p-r-5 p-0 mb-0">
                                 <li><Link className="dropdown-item font-size-9 inline-flex  " to="#"><small>Term Of services</small></Link></li>

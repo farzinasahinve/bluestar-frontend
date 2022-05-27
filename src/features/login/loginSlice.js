@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from "axios";
 const initialState = {
   user: {},
+  loggedUserData:{},
   token: '',
   status: 'idle',
 };
@@ -31,8 +32,10 @@ export const loginSlice = createSlice({
       .addCase(loginAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.user = action.payload.data;
+        console.log(action.payload)
         state.token = action.payload.token;
         localStorage.setItem('token',action.payload.token)
+        localStorage.setItem('loggedUserData',action.payload.data.email)
       });
   },
 });
