@@ -18,7 +18,7 @@ const Drivers = () => {
             dispatch(fetchDrivers())
         //}
     },[driverStatus,dispatch])
-    //console.log(drivers);
+    console.log(drivers);
     const submitHandler = (e) => {
         e.preventDefault();
         if (searchKey === "" && searchStatus === "") return alert("Please enter search term!");
