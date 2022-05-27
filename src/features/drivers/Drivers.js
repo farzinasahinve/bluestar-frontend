@@ -76,7 +76,7 @@ const Drivers = () => {
                                                 <div className="col-sm-10">
                                                     <div className="form-group">
                                                         <label className="form-label">&nbsp;</label>
-                                                        <button type="button" className="btn d-block add-button" ><i className="dripicons-plus font-size-20 vertical-align-top"></i> &nbsp; Add Driver</button>
+                                                        <Link to="" type="button" className="btn d-block add-button" ><i className="dripicons-plus font-size-20 vertical-align-top"></i> &nbsp; Add Driver</Link>
                                                     </div>
                                                 </div>
                                                 <div className="col-sm-2">

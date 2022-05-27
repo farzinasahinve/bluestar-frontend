@@ -9,6 +9,7 @@ import Vehicles from "./features/vehicles/Vehicles";
 import ELD from "./features/eld/ELD";
 import PortalUser from "./features/portalUsers/PortalUser";
 import CompanyView from "./features/company/CompanyView"
+import DriverForm from "./features/drivers/DriverForm";
 import ProtectedRoute from "./hook/ProtectedRoute";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="forgot-password" element={<ForgotPassword/>}/>
           <Route path="settings">
             <Route path="drivers" element={<Drivers/>}/>
+            <Route path="drivers/add" element={<DriverForm/>}/>
             <Route path="vehicles" element={<Vehicles/>}/>
             <Route path="elds" element={<ELD/>}/>
             <Route path="portal-users" element={<PortalUser/>}/>

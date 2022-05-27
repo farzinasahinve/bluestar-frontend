@@ -44,6 +44,8 @@ const Login = () => {
     
         if(!values.password){
           errors.password = "Password is required"
+        }else if(values.password.length < 8){
+            errors.password = "Password must contain atleast 8 characters"
         }
         console.log(errors)
         return errors
