@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react"
 import { useSelector, useDispatch } from "react-redux";
-import { getAllDrivers,getDriverStatus,getDriverError,fetchDrivers } from "./driversSlice";
+import { getAllDrivers,fetchDrivers } from "./driversSlice";
 import { Link } from 'react-router-dom'
 import Header from '../../layout/Header'
 import Sidebar from '../../layout/Sidebar'
@@ -11,20 +11,21 @@ const Drivers = () => {
     const [searchKey, setsearchKey] = useState("");
     const [searchStatus, setsearchStatus] = useState("");
     const drivers = useSelector(getAllDrivers)
-    const driverStatus = useSelector(getDriverStatus)
+    const driverStatus = drivers.status
+    const totalRecords = drivers.totalRecords
     //const error = useSelector(getDriverError)
     useEffect(()=>{
-        //if(driverStatus==='idle'){
+        if(driverStatus==='idle'){
             dispatch(fetchDrivers())
-        //}
+        }
     },[driverStatus,dispatch])
-    console.log(drivers);
+    //console.log(drivers);
     const submitHandler = (e) => {
         e.preventDefault();
         if (searchKey === "" && searchStatus === "") return alert("Please enter search term!");
         dispatch(fetchDrivers(searchKey,searchStatus));
     };
-    const pageHead = 'Driver(62)'
+    const pageHead = `Driver(${totalRecords})`
     return (
         <>
         <div id="layout-wrapper">

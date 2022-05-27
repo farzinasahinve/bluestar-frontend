@@ -7,7 +7,8 @@ var GET_DRIVER_LIST =  BASEURL+'getDriverList?lastkeyfound=start&limit=20'
 const initialState = {
     drivers:[],
     status:'idle',
-    error:null
+    error:null,
+    totalRecords:0
 }
 const token = ''
 export const fetchDrivers = createAsyncThunk('drivers/fetchDrivers',async(searchKey,searchStatus)=>{
@@ -18,7 +19,7 @@ export const fetchDrivers = createAsyncThunk('drivers/fetchDrivers',async(search
         if(searchKey){
             GET_DRIVER_LIST = GET_DRIVER_LIST+`&search_key=${searchKey}&search_status=${searchStatus}`
         }
-        console.log(GET_DRIVER_LIST)
+        //console.log(GET_DRIVER_LIST)
         const response = await axios.get(GET_DRIVER_LIST,config)
         return response.data
     }catch(err){
@@ -40,15 +41,17 @@ const driversSlice = createSlice({
             })
             .addCase(fetchDrivers.fulfilled,(state,action)=>{
                 state.status = 'success'
-                console.log(action.payload.data)
+                //console.log(action.payload.data)
                 state.drivers = action.payload.data.drivers
+                state.totalRecords = action.payload.data.TotalRecord
             })
     }
 })
 
 export const getAllDrivers = (state) => state.drivers
-export const getDriverStatus = (state) => state.status
-export const getDriverError = (state) => state.error
+// export const getDriverStatus = (state) => state.status
+// export const getDriverError = (state) => state.error
+// export const getTotalRecords = (state) => state.totalRecords
 
 export default driversSlice.reducer
 
