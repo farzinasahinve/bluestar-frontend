@@ -10,12 +10,14 @@ const initialState = {
 const token = ''
 export const fetchDrivers = createAsyncThunk('drivers/fetchDrivers',async(searchKey,searchStatus)=>{
     try{
-        console.log(searchKey)
+        const config = {
+            Authorization: `Bearer ${token}`
+        }
         if(searchKey){
             GET_DRIVER_LIST = GET_DRIVER_LIST+`?search_key=${searchKey}&search_status=${searchStatus}`
         }
         console.log(GET_DRIVER_LIST)
-        const response = await axios.get(GET_DRIVER_LIST)
+        const response = await axios.get(GET_DRIVER_LIST,config)
         return response.data
     }catch(err){
         return err.message
