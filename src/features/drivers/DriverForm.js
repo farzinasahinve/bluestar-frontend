@@ -1,18 +1,22 @@
 import Header from "../../layout/Header"
 import Sidebar from "../../layout/Sidebar"
 import { Link } from "react-router-dom"
+import { useState } from "react"
 
 const DriverForm = () => {
   const pageHead = ''
+  const [values, setValues] = useState({
+      username: ''
+  });
   const handleChange = ()=>{
-    setValues({ ...values, [prop]: event.target.value });
+    //setValues({ ...values, [prop]: event.target.value });
   }
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    //setErrors(validateLoginForm(values))
-    //dispatch(loginAsync(values))
-    //setIsSubmitted(true)
-  }
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   setErrors(validateLoginForm(values))
+  //   dispatch(loginAsync(values))
+  //   setIsSubmitted(true)
+  // }
   return (
     <>
     <div id='layout-wrapper'>
@@ -55,7 +59,7 @@ const DriverForm = () => {
                               <div className="col-md-12">
                                 <div className="mb-4 user-input">
                                   <label  className="form-label">Driver ID</label>
-                                  <input type="text" value={username} className="form-control"  onChange={handleChange('username')}placeholder=""  required=""/>
+                                  <input type="text" value={values.username} className="form-control"  onChange={handleChange('username')}placeholder=""  required=""/>
                                 </div>
                               </div>
                             </div>

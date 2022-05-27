@@ -10,7 +10,9 @@ const initialState = {
     error:null,
     totalRecords:0
 }
-const token = ''
+const token = JSON.stringify(localStorage.getItem('token'))
+console.log(token)
+
 export const fetchDrivers = createAsyncThunk('drivers/fetchDrivers',async(searchKey,searchStatus)=>{
     try{
         const config = {
