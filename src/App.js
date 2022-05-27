@@ -10,16 +10,22 @@ import ELD from "./features/eld/ELD";
 import PortalUser from "./features/portalUsers/PortalUser";
 import CompanyView from "./features/company/CompanyView"
 import DriverForm from "./features/drivers/DriverForm";
-import ProtectedRoute from "./hook/ProtectedRoute";
+import PrivateRoute from './PrivateRoute'
 
 function App() {
   return (
     <div className="">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login/>}/>
-          <Route path="dashboard" component={<ProtectedRoute><Dashboard/></ProtectedRoute>}/>
+        <Route path="/dashboard" element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        ></Route>
+
           <Route path="login" element={<Login/>}/>
+
           <Route path="register" element={<Register/>}/>
           <Route path="register-success" element={<RegisterSuccess/>}/>
           <Route path="forgot-password" element={<ForgotPassword/>}/>
