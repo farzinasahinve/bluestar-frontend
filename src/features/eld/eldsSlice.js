@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-//const BASEURL = "http://localhost:3000/dev/"
-const BASEURL = "https://faac6dbw50.execute-api.us-east-1.amazonaws.com/dev/"
+const BASEURL = "http://localhost:3000/dev/"
+//const BASEURL = "https://faac6dbw50.execute-api.us-east-1.amazonaws.com/dev/"
 var GET_LIST = BASEURL+'getELDs?lastkeyfound=start&limit=20'
 
 const initialState = {
@@ -23,13 +23,14 @@ export const getELDS = createAsyncThunk('elds/getELDS',async(searchKey,searchSta
         }
         //console.log(GET_LIST)
         const response = await axios.get(GET_LIST,config)
+        console.log(response)
         return response.data
     }catch(err){
         return err.message
     }
 })
 
-export const eldSlice = createSlice({
+export const eldsSlice = createSlice({
     name:'elds',
     initialState,
     reducers:{},
@@ -44,4 +45,4 @@ export const eldSlice = createSlice({
 
 export const getAllELDs = (state) => state.elds
 
-export default eldSlice.reducer
+export default eldsSlice.reducer
