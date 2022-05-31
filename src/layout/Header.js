@@ -1,13 +1,20 @@
 import { Link, useNavigate } from "react-router-dom"
-
+import { selectUser } from "../features/login/loginSlice";
+import { useSelector } from "react-redux";
 const Header = ({pageHead}) => {
     const navigate = useNavigate()
     const handleLogout = () => {
         localStorage.clear();
         navigate('/login')
     };
-    console.log(localStorage.getItem('loggedUserEmail')) 
-    const loggedUserEmail = localStorage.getItem('loggedUserEmail')
+    const authUser = useSelector(selectUser)
+    //console.log(authUser) 
+    let loggedUser = {}
+    if(authUser?.user){
+        loggedUser.name = authUser?.user.firstName+' '+authUser?.user.lastName
+        loggedUser.email = authUser?.user.email
+        //console.log(authUser) 
+    }
     return (
         <header id="page-topbar">
             <div className="navbar-header  mt-2 pb-1">
@@ -249,7 +256,7 @@ const Header = ({pageHead}) => {
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span className="rounded-circle header-profile-user p-2">KP</span>
                                     
-                                <span className="d-none d-xl-inline-block text-capitalize ms-1  font-size-14  user-name vertical-middle">{loggedUserEmail}<br></br><small>Kapil@gmail.com</small> </span>
+                                <span className="d-none d-xl-inline-block text-capitalize ms-1  font-size-14  user-name vertical-middle">{loggedUser.firstName}<br></br><small>{loggedUser.email}</small> </span>
                                 
                             </button>
                             <div className="dropdown-menu dropdown-menu-end">

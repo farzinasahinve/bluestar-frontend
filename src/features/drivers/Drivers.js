@@ -55,10 +55,9 @@ const Drivers = () => {
                                                         <div className="form-group">
                                                             <label className="form-label">Filter by Status</label>
                                                             <select className="form-select" onChange={e=>setsearchStatus(e.target.value)}>
-                                                                <option value="">Active</option>
-                                                                <option value="1">Active</option>
-                                                                <option value="2">Two</option>
-                                                                <option value="3">Three</option>
+                                                                <option value="">Select</option>
+                                                                <option value="active">Active</option>
+                                                                <option value="inactive">Inactive</option>
                                                             </select>
                                                         </div>
                                                     </div>

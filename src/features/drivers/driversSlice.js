@@ -36,7 +36,7 @@ export const addDriver = createAsyncThunk('drivers/addDriver',async(driverData)=
             Authorization: `Bearer ${token}`
         }
         //console.log(GET_DRIVER_LIST)
-        const response = await axios.get(ADD_DRIVER,driverData,config)
+        const response = await axios.post(ADD_DRIVER,driverData,config)
         return response.data
     }catch(err){
         return err.message
@@ -65,9 +65,6 @@ const driversSlice = createSlice({
 })
 
 export const getAllDrivers = (state) => state.drivers
-// export const getDriverStatus = (state) => state.status
-// export const getDriverError = (state) => state.error
-// export const getTotalRecords = (state) => state.totalRecords
 
 export default driversSlice.reducer
 
