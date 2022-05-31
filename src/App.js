@@ -30,12 +30,12 @@ function App() {
           <Route path="register-success" element={<RegisterSuccess/>}/>
           <Route path="forgot-password" element={<ForgotPassword/>}/>
           <Route path="settings">
-            <Route path="drivers" element={<Drivers/>}/>
+            <Route path="drivers" element={<PrivateRoute><Drivers/></PrivateRoute>}/>
             <Route path="drivers/add" element={<DriverForm/>}/>
             <Route path="vehicles" element={<Vehicles/>}/>
             <Route path="elds" element={<ELD/>}/>
             <Route path="portal-users" element={<PortalUser/>}/>
-            <Route path="company" element={<CompanyView/>}/>
+            <Route path="company" element={<PrivateRoute><CompanyView/></PrivateRoute>}/>
           </Route>
         </Routes>
       </BrowserRouter>

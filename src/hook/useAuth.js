@@ -1,9 +1,7 @@
 function useAuth() {
 
-  var auth =false;
-    if(localStorage.getItem('token')){
-      auth = true
-    }
+    var auth =false;
+    auth = (localStorage.getItem('token')) ? true : false
     return auth;
 }
   

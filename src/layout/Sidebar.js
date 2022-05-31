@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom"
+import { useState } from "react"
 
 const Sidebar = () => {
+    const [isOpen,setIsOpen] = useState(false)
     return (
+        // <div className={`vertical-menu ${isOpen ? 'expand' :'collapse'}`}>
         <div className="vertical-menu">
             <div data-simplebar className="h-100">
                 <div id="sidebar-menu">
@@ -73,7 +76,7 @@ const Sidebar = () => {
                                 <i className="ri-settings-2-line"></i>
                                 <span>Setting</span>
                             </Link>
-                            <ul className="sub-menu" aria-expanded>
+                            <ul className="sub-menu">
                                 <li><Link to="/settings/drivers">Driver </Link></li>
                                 <li><Link to="/settings/vehicles">Vehicles</Link></li>
                                 <li><Link to="/settings/elds">ELD Devices</Link></li>
