@@ -2,8 +2,11 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from "axios";
 const initialState = {
   user: {},
+  loggedUserEmail:'',
   token: '',
   status: 'idle',
+  error:null,
+  loginResponseMessage:''
 };
 var BASE_URL  = 'https://faac6dbw50.execute-api.us-east-1.amazonaws.com/dev/login';
 
@@ -29,10 +32,16 @@ export const loginSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(loginAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
+        console.log(action.payload.message)
+        state.status = (action.payload.success === true) ? 'success' : 'failure';
         state.user = action.payload.data;
         state.token = action.payload.token;
-        localStorage.setItem('token',action.payload.token)
+        if(action.payload.success === true){
+          localStorage.setItem('token',action.payload.token)
+        }
+        localStorage.setItem('loggedUserEmail',action.payload.data.email)
+        state.loginResponseMessage = action.payload.message
+        
       });
   },
 });

@@ -14,6 +14,8 @@ const Login = () => {
     const [errors, setErrors] = useState({});
     const [isSubmitted, setIsSubmitted] = useState(false);
     const authUser = useSelector(selectUser)
+    const loginResponse = authUser?.loginResponseMessage
+    //console.log(loginResponse)
     
     useEffect(() => {
         if(authUser?.token) navigate('/dashboard')
@@ -25,9 +27,15 @@ const Login = () => {
     
     const handleSubmit = (event) => {
         event.preventDefault();
-        setErrors(validateLoginForm(values))
-        dispatch(loginAsync(values))
-        setIsSubmitted(true)
+        let validationErrors = validateLoginForm(values)
+        console.log(validationErrors)
+        if(Object.keys(validationErrors).length === 0){
+            setErrors({})
+            dispatch(loginAsync(values))
+            setIsSubmitted(true)
+        }else{
+            setErrors(validateLoginForm(values))
+        }
     }
     useEffect(()=>{
         if(Object.keys(errors).length === 0 && isSubmitted){
@@ -39,11 +47,13 @@ const Login = () => {
         //const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
         if(!values.email || !emailRegex.test(values.email)){
-          errors.email = "Please enter a valid email"
+            errors.email = "Please enter a valid email"
         }
     
         if(!values.password){
-          errors.password = "Password is required"
+            errors.password = "Password is required"
+        }else if(values.password.length < 8){
+            errors.password = "Password must contain atleast 8 characters"
         }
         console.log(errors)
         return errors
@@ -66,6 +76,7 @@ const Login = () => {
                         </div>
                         <div className="row">
                             <div className="col-md-12 mx-0">
+                                <div className="text-danger">{loginResponse}</div>
                                 <form onSubmit={handleSubmit}>
                                     <div className="form-card">
                                         <div className="form-group mb-3 row">

@@ -1,4 +1,4 @@
-# Bluestar
+# Bluestar ELD
 
 This project was generated with REACT version 18.1.0
 

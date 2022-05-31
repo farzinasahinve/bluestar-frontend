@@ -74,6 +74,9 @@ const Register = () => {
         }else if(values.password.length < 8){
             errors.password = "Password must contain atleast 8 characters"
         }
+        // if(!values.password){
+        //     errors.password = "Password is required"
+        // }
         console.log(errors)
         return errors
     }
