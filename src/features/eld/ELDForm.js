@@ -6,43 +6,41 @@ const ELDForm = () => {
   return (
     <>
     <div id="layout-wrapper">
-      <Header pageHead={pageHead}/>
-      <Sidebar/>
-      <div className="main-content">
-        <div className="page-content" style={{background:'#eff3f6'}}>
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-9 mt-3 mx-auto">
-                <div className="page-title-box">
-									<div className="row">
-									  <div className="col-7">
+		<Header pageHead={pageHead}/>
+		<Sidebar/>
+		<div className="main-content">
+        	<div className="page-content" style={{background:'#eff3f6'}}>
+          		<div className="container-fluid">
+            		<div className="row">
+              			<div className="col-9 mt-3 mx-auto">
+                			<div className="page-title-box">
+								<div className="row">
+									<div className="col-7">
 									    <div className="row">
 										    <h3 className="text-capitalize"><strong>ELD Device Info</strong></h3>
 									    </div>
-									  </div>		
+									</div>		
 								    <div className="col-4 ps-5">
 									    <div className="d-inline-flex">
-									      <div className="col-sm-5">
-									        <div className="form-group">
-                            <button className="btn cancel-btn btn border border-color d-block  bg-white ">Cancel</button>
+									      	<div className="col-sm-5">
+									        	<div className="form-group">
+													<button className="btn cancel-btn btn border border-color d-block  bg-white ">Cancel</button>
 										      </div>
 										    </div>
-									      <div className="col-sm-10">
-									        <div className="form-group">
-                            <button type="button" className="btn d-block add-button" data-bs-toggle="modal" data-bs-target="#exampleModalFullscreen"><i className="dripicons-plus font-size-20 vertical-align-top"></i> &nbsp; Add ELD Devices</button>
-										      </div>
-                        </div>
-										  </div>
+									      	<div className="col-sm-10">
+									        	<div className="form-group">
+                            						<button type="button" className="btn d-block add-button" data-bs-toggle="modal" data-bs-target="#exampleModalFullscreen"><i className="dripicons-plus font-size-20 vertical-align-top"></i> &nbsp; Add ELD Devices</button>
+										      	</div>
+                        					</div>
 										</div>
 									</div>
-									
-									
-									<div className="row mt-4">
-									  <div className="col-md-12">
-										  <div className="card">
+								</div>
+								<div className="row mt-4">
+									<div className="col-md-12">
+										<div className="card">
 										    <div className="card-body">
 										      <form className="search-data add-driver">
-                            <div className="row">
+                            					<div className="row">
 															<div className="col-md-12 mb-4">
 																<div className="mb-0">
 																  <label  className="form-label">ELD SN (Serial Number)</label>
@@ -114,12 +112,9 @@ const ELDForm = () => {
                         
 						
                         
-                    </div> 
-                </div>
-                
-             
-                
-            </div>
+				</div> 
+			</div>
+		</div>
     </div>
     </>
   )
