@@ -1,8 +1,20 @@
-import { Link } from "react-router-dom"
-
+import { Link, useNavigate } from "react-router-dom"
+import { selectUser } from "../features/login/loginSlice";
+import { useSelector } from "react-redux";
 const Header = ({pageHead}) => {
-    let loggedUserEmail = localStorage.getItem('loggedUserEmail')
-    console.log(loggedUserEmail)
+    const navigate = useNavigate()
+    const handleLogout = () => {
+        localStorage.clear();
+        navigate('/login')
+    };
+    const authUser = useSelector(selectUser)
+    //console.log(authUser) 
+    let loggedUser = {}
+    if(authUser?.user){
+        loggedUser.name = authUser?.user.firstName+' '+authUser?.user.lastName
+        loggedUser.email = authUser?.user.email
+        //console.log(authUser) 
+    }
     return (
         <header id="page-topbar">
             <div className="navbar-header  mt-2 pb-1">
@@ -244,7 +256,7 @@ const Header = ({pageHead}) => {
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span className="rounded-circle header-profile-user p-2">KP</span>
                                     
-                                <span className="d-none d-xl-inline-block text-capitalize ms-1  font-size-14  user-name vertical-middle"><br></br><small>{loggedUserEmail}</small> </span>
+                                <span className="d-none d-xl-inline-block text-capitalize ms-1  font-size-14  user-name vertical-middle">{loggedUser.firstName}<br></br><small>{loggedUser.email}</small> </span>
                                 
                             </button>
                             <div className="dropdown-menu dropdown-menu-end">
@@ -257,7 +269,7 @@ const Header = ({pageHead}) => {
                                 <div className="dropdown-divider m-0"></div>
                                 <Link className="dropdown-item" to="#"><i className="mdi mdi-api  align-middle me-1"></i> API </Link>
                                 
-                                <Link className="dropdown-item " to="#"><i className=" ri-logout-box-r-line align-middle me-1"></i> Log out</Link>
+                                <button type="button" className="dropdown-item " to="#" onClick={handleLogout}><i className=" ri-logout-box-r-line align-middle me-1"></i> Log out</button>
                                 <div className="dropdown-divider m-0"></div>
                                 <ul className="d-inline-flex bootom-links p-r-5 p-0 mb-0">
                                 <li><Link className="dropdown-item font-size-9 inline-flex  " to="#"><small>Term Of services</small></Link></li>

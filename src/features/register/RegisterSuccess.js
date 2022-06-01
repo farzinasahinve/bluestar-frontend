@@ -1,4 +1,4 @@
-import React from 'react'
+import { Link } from "react-router-dom"
 
 const RegisterSuccess = () => {
   return (
@@ -20,6 +20,9 @@ const RegisterSuccess = () => {
     
                     <div className="p-3">
                           <p> Confirmation email has been sent to user@gmail.com. Please check for an email from ELD and click on the included link to activate your account.</p>
+                    </div>
+                    <div className='text-center'>
+                        <Link to="/login" className="btn btn-primary text-center">Login</Link>
                     </div>
                 </div>
             </div>

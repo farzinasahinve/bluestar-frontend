@@ -11,35 +11,38 @@ import PortalUser from "./features/portalUsers/PortalUser";
 import CompanyView from "./features/company/CompanyView"
 import DriverForm from "./features/drivers/DriverForm";
 import VehicleForm from "./features/vehicles/VehicleForm";
-import CompanyUserForm from "./features/portalUsers/CompanyUserForm";
+import VehicleEditForm from "./features/vehicles/VehicleEditForm";
 import ELDForm from "./features/eld/ELDForm";
-import ProtectedRoute from "./hook/ProtectedRoute";
+import PrivateRoute from './PrivateRoute'
 
 function App() {
   return (
     <div className="">
       <BrowserRouter>
         <Routes>
+        <Route path="/dashboard" element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        ></Route>
           <Route path="/" element={<Login/>}/>
-          <Route path="dashboard" component={<ProtectedRoute><Dashboard/></ProtectedRoute>}/>
           <Route path="login" element={<Login/>}/>
+
           <Route path="register" element={<Register/>}/>
           <Route path="register-success" element={<RegisterSuccess/>}/>
           <Route path="forgot-password" element={<ForgotPassword/>}/>
+          <Route path="settings/drivers" element={<PrivateRoute><Drivers/></PrivateRoute>}/>
           <Route path="settings">
-            <Route path="drivers" element={<Drivers/>}/>
+            {/* <Route path="drivers" element={<PrivateRoute><Drivers/></PrivateRoute>}/> */}
             <Route path="drivers/add" element={<DriverForm/>}/>
-            {/* <Route path="drivers" element={<Drivers/>}/>
-              <Route path="add" element={DriverForm}>
-            </Route> */}
             <Route path="vehicles" element={<Vehicles/>}/>
             <Route path="vehicles/add" element={<VehicleForm/>}/>
+            <Route path="vehicles/:id" element={<VehicleEditForm/>}/>
             <Route path="elds" element={<ELD/>}/>
             <Route path="elds/add" element={<ELDForm/>}/>
             <Route path="portal-users" element={<PortalUser/>}/>
-            <Route path="portal-users/add" element={<CompanyUserForm/>}/>
-            <Route path="company" element={<CompanyView/>}/>
-          </Route>
+            <Route path="company" element={<PrivateRoute><CompanyView/></PrivateRoute>}/>          </Route>
         </Routes>
       </BrowserRouter>
     </div>

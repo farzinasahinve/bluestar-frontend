@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react"
 import { useSelector, useDispatch } from "react-redux";
-import { getAllDrivers,getDriverStatus,getDriverError,fetchDrivers } from "./driversSlice";
+import { getAllDrivers,fetchDrivers } from "./driversSlice";
 import { Link } from 'react-router-dom'
 import Header from '../../layout/Header'
 import Sidebar from '../../layout/Sidebar'
@@ -11,12 +11,13 @@ const Drivers = () => {
     const [searchKey, setsearchKey] = useState("");
     const [searchStatus, setsearchStatus] = useState("");
     const drivers = useSelector(getAllDrivers)
-    const driverStatus = useSelector(getDriverStatus)
+    const driverStatus = drivers.status
+    const totalRecords = drivers.totalRecords
     //const error = useSelector(getDriverError)
     useEffect(()=>{
-        //if(driverStatus==='idle'){
+        if(driverStatus==='idle'){
             dispatch(fetchDrivers())
-        //}
+        }
     },[driverStatus,dispatch])
     //console.log(drivers);
     const submitHandler = (e) => {
@@ -24,7 +25,7 @@ const Drivers = () => {
         if (searchKey === "" && searchStatus === "") return alert("Please enter search term!");
         dispatch(fetchDrivers(searchKey,searchStatus));
     };
-    const pageHead = 'Driver(62)'
+    const pageHead = `Driver(${totalRecords})`
     return (
         <>
         <div id="layout-wrapper">
@@ -54,8 +55,9 @@ const Drivers = () => {
                                                         <div className="form-group">
                                                             <label className="form-label">Filter by Status</label>
                                                             <select className="form-select" onChange={e=>setsearchStatus(e.target.value)}>
-                                                                <option value="1">Active</option>
-                                                                <option value="2">Inactive</option>
+                                                                <option value="">Select</option>
+                                                                <option value="active">Active</option>
+                                                                <option value="inactive">Inactive</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -73,7 +75,7 @@ const Drivers = () => {
                                                 <div className="col-sm-10">
                                                     <div className="form-group">
                                                         <label className="form-label">&nbsp;</label>
-                                                        <button type="button" className="btn d-block add-button"><i className="dripicons-plus font-size-20 vertical-align-top"></i> &nbsp; Add Driver</button>
+                                                        <Link to="" type="button" className="btn d-block add-button" ><i className="dripicons-plus font-size-20 vertical-align-top"></i> &nbsp; Add Driver</Link>
                                                     </div>
                                                 </div>
                                                 <div className="col-sm-2">
