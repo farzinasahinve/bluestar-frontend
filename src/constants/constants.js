@@ -1,0 +1,12 @@
+export const PARTNER = 'partner';
+export const CLIENT = 'client';
+export const ADMIN = 'admin';
+export const MEMBER = 'member';
+export const VALIDATE_CONTACT_NO = /^(?:\+?(61))? ?(?:\((?=.*\)))?(0?[2-57-8])\)? ?(\d\d(?:[- ](?=\d{3})|(?!\d\d[- ]?\d[- ]))\d\d[- ]?\d[- ]?\d{3})$/;
+export const VALIDATE_EMAIL = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+export const VALIDATE_NAME = /^[a-zA-Z ]*$/;
+export const VALIDATE_JOB_NUMBER = /^[a-zA-Z0-9]+$/;
+export const ALPHABATES_NUMERIC = /^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/;
+export const VALIDATE_PASSWORD = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,12}$/;
+export const NUMERIC_CHARACTERS = /^[0-9]+$/;
+export const VALIDATE_PRICE = /^(?!(?:.*?\.){2})\d{0,3}[.]?\d{0,3}[.]?\d{0,3}[.]?\d{0,3}[.]?\d{0,3}[.]?\d{1,3}[,]?\d{0,2}$/;
